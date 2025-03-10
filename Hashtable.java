@@ -12,5 +12,13 @@ public abstract class Hashtable {
         this.loadFactor = loadFactor;
     }
 
+    public void insert(int key, int value) {
+
+    }
+
+    public int search(int key) {
+        return -1;
+    }
+
     public abstract int h(Object key, int probe);
 }
