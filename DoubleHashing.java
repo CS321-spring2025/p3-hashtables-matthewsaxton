@@ -1,9 +1,6 @@
-/**
- *
- */
-public class LinearProbing extends Hashtable{
+public class DoubleHashing extends Hashtable{
 
-    public LinearProbing(int capacity, int loadFactor) {
+    public DoubleHashing(int capacity, int loadFactor) {
         super(capacity, loadFactor);
     }
 
@@ -21,13 +18,13 @@ public class LinearProbing extends Hashtable{
     }
 
     /**
-     * Hash function for LinearProbing method.
+     * Hash function for DoubleHashing method.
      * @param key
      * @param probe
      * @return Hashtable value where Object is placed.
      */
     @Override
     public int h(Object key, int probe) {
-        return positiveMod(key.hashCode(), capacity);
+        return 1 + positiveMod(key.hashCode(), capacity - 2);
     }
 }

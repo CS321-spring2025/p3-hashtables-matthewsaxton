@@ -1,12 +1,14 @@
 public class HashObject {
     private Object key;
+    private int value;
     private int freqCount;
     private int probeCount;
 
-    public HashObject(Object key, int freqCount, int probeCount) {
+    public HashObject(Object key, int value) {
         this.key = key;
-        this.freqCount = freqCount;
-        this.probeCount = probeCount;
+        this.value = value;
+        this.freqCount = 0;
+        this.probeCount = 0;
     }
 
     /**
@@ -36,7 +38,9 @@ public class HashObject {
      * Increments probe count.
      */
     public void updateProbeCount() {
-        probeCount++;
+        if (freqCount == 0) {
+            probeCount++;
+        }
     }
 
     /**
@@ -54,7 +58,8 @@ public class HashObject {
 
     @Override
     public String toString() {
-
+        //TODO: Write toString() method.
+        return "HashObject [key=" + key + ", freqCount=" + freqCount + ", probeCount=";
     }
 
 

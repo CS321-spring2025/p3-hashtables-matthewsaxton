@@ -13,7 +13,7 @@ public abstract class Hashtable {
     }
 
     public void insert(int key, int value) {
-
+        HashObject hashObject = new HashObject(key, value);
     }
 
     public int search(int key) {
