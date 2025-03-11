@@ -7,18 +7,7 @@ public class LinearProbing extends Hashtable{
         super(capacity, loadFactor);
     }
 
-    /**
-     * Ensures the mod operation returns a positive integer.
-     * @param dividend
-     * @param divisor
-     * @return quotient
-     */
-    protected int positiveMod (int dividend, int divisor) {
-        int quotient = dividend % divisor;
-        if (quotient < 0)
-            quotient += divisor;
-        return quotient;
-    }
+
 
     /**
      * Hash function for LinearProbing method.

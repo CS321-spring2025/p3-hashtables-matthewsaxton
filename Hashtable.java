@@ -16,24 +16,47 @@ public abstract class Hashtable {
     /**
      * Uses a key value, and hashCode() for HashObject's key. hashCode() will be used to perform
      * hash function calculation. Two different keys may have the same hashCode() value.
-     * @param key
      * @param value
      */
-    public void insert(Object key, int value) {
+    public void insert(int value) {
         //checks if the n/m has exceeded the load factor.
         if((size / capacity) >= loadFactor) {
             throw new IndexOutOfBoundsException("n/m has exceeded load factor");
         }
         //use hashCode() value for HashObject's key.
+        HashObject newHO = new HashObject(hashCode(), value);
 
         //use hashCode to perform hash function
-
+        int hashIndex = h(newHO.getKey(), capacity);
         //compare actual key objects with equals method, checking for duplicates
 
     }
 
+    /**
+     *
+     * @param key
+     * @return
+     */
     public int search(int key) {
-        return -1;
+        for(int i = 0; i < capacity; i++) {
+            if(key == i){
+                return -1;
+            }
+        }
+        return key;
+    }
+
+    /**
+     * Ensures the mod operation returns a positive integer.
+     * @param dividend
+     * @param divisor
+     * @return quotient
+     */
+    protected int positiveMod (int dividend, int divisor) {
+        int quotient = dividend % divisor;
+        if (quotient < 0)
+            quotient += divisor;
+        return quotient;
     }
 
     /**

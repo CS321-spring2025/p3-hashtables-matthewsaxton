@@ -5,19 +5,6 @@ public class DoubleHashing extends Hashtable{
     }
 
     /**
-     * Ensures the mod operation returns a positive integer.
-     * @param dividend
-     * @param divisor
-     * @return quotient
-     */
-    protected int positiveMod (int dividend, int divisor) {
-        int quotient = dividend % divisor;
-        if (quotient < 0)
-            quotient += divisor;
-        return quotient;
-    }
-
-    /**
      * Hash function for DoubleHashing method.
      * @param key
      * @param probe
@@ -25,6 +12,11 @@ public class DoubleHashing extends Hashtable{
      */
     @Override
     public int h(Object key, int probe) {
-        return 1 + positiveMod(key.hashCode(), capacity - 2);
+        if(search(key.hashCode()) > 0) { //check if hashCode exists elsewhere.
+            return positiveMod(key.hashCode(), capacity);
+        }
+         else {
+             return 1 + positiveMod(key.hashCode(), capacity - 2);
+        }
     }
 }
