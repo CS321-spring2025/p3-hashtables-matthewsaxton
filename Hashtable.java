@@ -1,3 +1,6 @@
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+
 /**
  *
  */
@@ -57,6 +60,18 @@ public abstract class Hashtable {
         if (quotient < 0)
             quotient += divisor;
         return quotient;
+    }
+
+    public void dumpToFile(String fileName) {
+        PrintWriter out = null;
+        try {
+            out = new PrintWriter(fileName);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        // loop through the hash table, and print non-null entries
+        // using toString() method in the HashObject class
+        out.close();
     }
 
     /**
