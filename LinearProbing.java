@@ -16,7 +16,7 @@ public class LinearProbing extends Hashtable{
      * @return Hashtable value where Object is placed.
      */
     @Override
-    public int h(Object key, int probe) {
-        return positiveMod(key.hashCode(), capacity);
+    public int h(int key, int probe) {
+        return positiveMod(key, capacity);
     }
 }

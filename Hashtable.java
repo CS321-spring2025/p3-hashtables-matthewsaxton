@@ -9,6 +9,8 @@ public abstract class Hashtable {
     protected int size;
     protected int capacity;
     protected int loadFactor;
+    protected Object[] hashTable;
+    //TODO: SETUP AWS
 
     public Hashtable(int capacity, int loadFactor) {
         this.capacity = capacity;
@@ -17,45 +19,52 @@ public abstract class Hashtable {
     }
 
     /**
-     * Uses a key value, and hashCode() for HashObject's key. hashCode() will be used to perform
-     * hash function calculation. Two different keys may have the same hashCode() value.
-     * @param value
+     *
+     * @return
      */
-    public void insert(int value) {
-        //checks if the n/m has exceeded the load factor.
-        if((size / capacity) >= loadFactor) {
-            throw new IndexOutOfBoundsException("n/m has exceeded load factor");
-        }
-        //use hashCode() value for HashObject's key.
-        HashObject newHO = new HashObject(hashCode(), value);
+    public Object search(HashObject hashObject) {
+        int key = hashObject.hashCode();
+//        int i = h(key, capacity);
+//        while (hashTable[i] != null) {
+//            if(key.equals(hashTable[i])) {
+//                return hashTable[i];
+//            }
+//            i = (i == capacity) ? 0 : i + 1;
+//        }
+        return null;
 
-        //use hashCode to perform hash function
-        int hashIndex = h(newHO.getKey(), capacity);
-        //compare actual key objects with equals method, checking for duplicates
-
+        //TODO: FIX SEARCH FUNCTION
     }
 
     /**
-     *
-     * @param key
-     * @return
+     * Uses a key value, and hashCode() for HashObject's key. hashCode() will be used to perform
+     * hash function calculation. Two different keys may have the same hashCode() value.
+     * @param hashObject
      */
-    public int search(int key) {
-        for(int i = 0; i < capacity; i++) {
-            if(key == i){
-                return -1;
+    public int insert(HashObject hashObject) {
+        int i = 0;
+        int key = hashObject.hashCode();
+        while (i == size) { //TODO: Count number of probes and frequency in insert or in search.
+            int probe = h(key, i);
+            if (hashTable[probe] == null) {
+                hashTable[probe] = key;
+                return probe;
+            } else {
+                i++;
             }
         }
-        return key;
+        throw new Error("Hashtable overflow!");
     }
+
 
     /**
      * Ensures the mod operation returns a positive integer.
+     *
      * @param dividend
      * @param divisor
      * @return quotient
      */
-    protected int positiveMod (int dividend, int divisor) {
+    protected int positiveMod(int dividend, int divisor) {
         int quotient = dividend % divisor;
         if (quotient < 0)
             quotient += divisor;
@@ -80,5 +89,5 @@ public abstract class Hashtable {
      * @param probe
      * @return
      */
-    public abstract int h(Object key, int probe);
+    public abstract int h(int key, int probe);
 }

@@ -11,12 +11,13 @@ public class DoubleHashing extends Hashtable{
      * @return Hashtable value where Object is placed.
      */
     @Override
-    public int h(Object key, int probe) {
-        if(search(key.hashCode()) > 0) { //check if hashCode exists elsewhere.
-            return positiveMod(key.hashCode(), capacity);
+    public int h(int key, int probe) {
+
+        if(!search(key).equals(key)) { //check if hashCode exists elsewhere.
+            return positiveMod(key, capacity);
         }
          else {
-             return 1 + positiveMod(key.hashCode(), capacity - 2);
+             return 1 + positiveMod(key, capacity - 2);
         }
     }
 }
