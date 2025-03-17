@@ -1,12 +1,10 @@
 public class HashObject {
     private Object key;
-    private int value;
     private int freqCount;
     private int probeCount;
 
-    public HashObject(Object key, int value) {
+    public HashObject(Object key) {
         this.key = key;
-        this.value = value;
         this.freqCount = 0;
         this.probeCount = 0;
     }

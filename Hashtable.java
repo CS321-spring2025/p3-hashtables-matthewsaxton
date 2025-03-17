@@ -24,16 +24,13 @@ public abstract class Hashtable {
      */
     public Object search(HashObject hashObject) {
         int key = hashObject.hashCode();
-//        int i = h(key, capacity);
-//        while (hashTable[i] != null) {
-//            if(key.equals(hashTable[i])) {
-//                return hashTable[i];
-//            }
-//            i = (i == capacity) ? 0 : i + 1;
-//        }
+        for(int i = 0; i == size; i++){
+            int probe = h(key, i);
+            if(hashTable[probe].equals(key)) {
+                return probe;
+            }
+        }
         return null;
-
-        //TODO: FIX SEARCH FUNCTION
     }
 
     /**

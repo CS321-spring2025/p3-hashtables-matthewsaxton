@@ -1,3 +1,5 @@
+import java.util.Random;
+
 public class HashtableExperiment {
     public static void main(String[] args) {
         if(args.length == 0) {
@@ -12,6 +14,32 @@ public class HashtableExperiment {
                     "\n\t\t\t2 ==> print debugging output for each insert");
             System.exit(1);
         }
+        int capacity = TwinPrimeGenerator.generateTwinPrime(9550, 96000);
+        int loadFactor = Integer.parseInt(args[1]);
+        double n = Math.ceil(loadFactor*capacity);
+
+        LinearProbing linProbe = new LinearProbing(capacity, loadFactor);
+        DoubleHashing doubleHash = new DoubleHashing(capacity, loadFactor);
+
+        if(Integer.parseInt(args[0]) == 1) {
+            int numObjects = 0;
+            Random rand = new Random();
+            while((numObjects/capacity) < loadFactor) {
+                int randomInt = (rand.nextInt(capacity));
+                HashObject newHashObject = new HashObject(randomInt);
+
+                //for linear probing
+                linProbe.insert(newHashObject);
+
+                //for double hashing
+                doubleHash.insert(newHashObject);
+
+                numObjects++;
+
+            }
+        }
+
+        //TODO: finish experiment cases and test
 
     }
 }
