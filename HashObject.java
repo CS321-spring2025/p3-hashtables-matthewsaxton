@@ -1,3 +1,9 @@
+/**
+ * Creates a new HashObject
+ * to be sorted into a HashTable.
+ *
+ * @author Matthew Saxton
+ */
 public class HashObject {
     private Object key;
     private int freqCount;
@@ -21,7 +27,7 @@ public class HashObject {
      * Increments frequency count.
      */
     public void updateFreqCount() {
-        freqCount++;
+        this.freqCount++;
     }
 
     /**
@@ -29,16 +35,14 @@ public class HashObject {
      * @return freqCount
      */
     public int getFreqCount() {
-        return freqCount;
+        return this.freqCount;
     }
 
     /**
      * Increments probe count.
      */
     public void updateProbeCount() {
-        if (freqCount == 0) {
-            probeCount++;
-        }
+        this.probeCount++;
     }
 
     /**
@@ -46,18 +50,26 @@ public class HashObject {
      * @return probeCount
      */
     public int getProbeCount() {
-        return probeCount;
+        return this.probeCount;
+    }
+
+    @Override
+    public int hashCode() {
+        return key.hashCode();
     }
 
     @Override
     public boolean equals(Object obj) {
-        return this.key == obj;
+        if(this == obj) {
+            return true;
+        }
+
+        return key.equals(((HashObject)obj).getKey());
     }
 
     @Override
     public String toString() {
-        //TODO: Write toString() method.
-        return "HashObject [key=" + key + ", freqCount=" + freqCount + ", probeCount=";
+        return key.toString() + " " + freqCount + " " + probeCount;
     }
 
 

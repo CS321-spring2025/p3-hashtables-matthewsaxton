@@ -2,55 +2,100 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
 /**
+ *  Creates a HashTable, with the ability to
+ *  insert and search for objects within itself.
  *
+ * @author Matthew Saxton
+ * @author CS321 Instructors (dumpToFile outline)
  */
 public abstract class Hashtable {
 
     protected int size;
     protected int capacity;
-    protected int loadFactor;
-    protected Object[] hashTable;
-    //TODO: SETUP AWS
+    protected double loadFactor;
+    protected HashObject[] hashTable;
+    protected int numInserts;
+    protected int numDuplicates;
+    protected int numProbes;
 
-    public Hashtable(int capacity, int loadFactor) {
+    public Hashtable(int capacity, double loadFactor) {
         this.capacity = capacity;
         this.loadFactor = loadFactor;
         this.size = 0;
+        this.hashTable = new HashObject[capacity];
+        this.numInserts = 0;
+        this.numDuplicates = 0;
+        this.numProbes = 0;
     }
 
     /**
+     * Searches if hashObject is in the HashTable
      *
-     * @return
+     * @param hashObject - object to look for
+     * @return probe if hashObject exists, -1 if not
      */
-    public Object search(HashObject hashObject) {
+    public int search(HashObject hashObject) {
         int key = hashObject.hashCode();
-        for(int i = 0; i == size; i++){
+        for(int i = 0; i < capacity; i++){
             int probe = h(key, i);
-            if(hashTable[probe].equals(key)) {
+            if(hashTable[probe] == null) {
+                return -1;
+            }
+            //if there is a match, return the probe where the hashObject matches
+            if(hashTable[probe].getKey().equals(hashObject.getKey())){
                 return probe;
             }
         }
-        return null;
+        return -1;
     }
 
     /**
-     * Uses a key value, and hashCode() for HashObject's key. hashCode() will be used to perform
-     * hash function calculation. Two different keys may have the same hashCode() value.
-     * @param hashObject
+     * Inserts a given hashObject into the table.
+     * Will check if the loadFactor has been exceeded, as well as for
+     * duplicates. Also keeps track of amount of probes.
+     *
+     * @param hashObject - object to be inserted
+     * @return probe if inserted, -1 if unable to insert
      */
     public int insert(HashObject hashObject) {
-        int i = 0;
+        //checks if loadFactor has been exceeded
+        if((double)size / capacity >= loadFactor){
+            return -1;
+        }
+
+        //checks to see if the hashObject exists in the table already
+        int fullIndex = search(hashObject);
+
+        if(fullIndex != -1){
+            hashTable[fullIndex].updateFreqCount();
+            numDuplicates++;
+            numInserts++;
+
+            return fullIndex;
+        }
+
         int key = hashObject.hashCode();
-        while (i == size) { //TODO: Count number of probes and frequency in insert or in search.
+
+        numInserts++;
+        int probeCount = 0;
+
+        //Loops until there is a probe that is empty
+        for (int i = 0; i < capacity; i++) {
             int probe = h(key, i);
+            probeCount++;
+            hashObject.updateProbeCount();
+
             if (hashTable[probe] == null) {
-                hashTable[probe] = key;
+                hashTable[probe] = hashObject;
+
+                hashObject.updateFreqCount();
+
+                size++;
+                numProbes += probeCount;
                 return probe;
-            } else {
-                i++;
             }
         }
-        throw new Error("Hashtable overflow!");
+        return -1;
     }
 
 
@@ -68,16 +113,36 @@ public abstract class Hashtable {
         return quotient;
     }
 
+    /**
+     * Implements the hashTable into a txt file.
+     * @param fileName
+     */
     public void dumpToFile(String fileName) {
         PrintWriter out = null;
         try {
             out = new PrintWriter(fileName);
+            for(int i = 0; i < capacity; i++) {
+                if(hashTable[i] != null) {
+                    out.println("table[" + i + "]: " + hashTable[i].toString());
+                }
+            }
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
-        // loop through the hash table, and print non-null entries
-        // using toString() method in the HashObject class
         out.close();
+    }
+
+    public String toString() {
+        String str = "";
+        for(int i = 0; i < capacity; i++) {
+            if(hashTable[i] != null) {
+                str = "table[" + i + "]: " + hashTable[i].toString() + "\n";
+                if(hashTable[i].getFreqCount() > 1) {
+                    str += "^^^DUPLICATE^^^\n";
+                }
+            }
+        }
+        return str;
     }
 
     /**
@@ -86,5 +151,5 @@ public abstract class Hashtable {
      * @param probe
      * @return
      */
-    public abstract int h(int key, int probe);
+    public abstract int h(Object key, int probe);
 }

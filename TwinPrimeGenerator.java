@@ -8,11 +8,9 @@ public class TwinPrimeGenerator {
      * @return twin prime value
      */
     public static int generateTwinPrime(int min, int max) {
-        for(int i = min + 2; i <= max; i++) {
-            if(isPrime(i)) { //checks if first instance number is prime
-                if(isPrime(i - 2)) { //checks if it has twin prime
-                    return i;
-                }
+        for(int i = Math.max(min, 3); i <= max; i++) {
+            if(isPrime(i) && isPrime(i - 2)) {
+                return i;
             }
         }
         throw new Error("Could not generate twin prime");
@@ -24,7 +22,16 @@ public class TwinPrimeGenerator {
      * @return true/false - if value is a prime number
      */
     private static boolean isPrime(int num) {
-        for(int i = 2; i < num; i++) {
+        if(num < 2){
+            return false;
+        }
+        if(num == 2) {
+            return true;
+        }
+        if(num % 2 == 0) {
+            return false;
+        }
+        for(int i = 3; i * i <= num; i += 2) {
             if(num % i == 0) { //checks if prime
                 return false;
             }

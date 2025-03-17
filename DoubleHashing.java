@@ -1,6 +1,6 @@
 public class DoubleHashing extends Hashtable{
 
-    public DoubleHashing(int capacity, int loadFactor) {
+    public DoubleHashing(int capacity, double loadFactor) {
         super(capacity, loadFactor);
     }
 
@@ -11,13 +11,10 @@ public class DoubleHashing extends Hashtable{
      * @return Hashtable value where Object is placed.
      */
     @Override
-    public int h(int key, int probe) {
+    public int h(Object key, int probe) {
+        int h1 = positiveMod(key.hashCode(), capacity);
+        int h2 = 1 + positiveMod(key.hashCode(), capacity - 2);
 
-        if(!search(key).equals(key)) { //check if hashCode exists elsewhere.
-            return positiveMod(key, capacity);
-        }
-         else {
-             return 1 + positiveMod(key, capacity - 2);
-        }
+        return positiveMod(h1 + probe * h2, capacity);
     }
 }

@@ -1,0 +1,106 @@
+
+--------------------------------------------------------------------------------
+HashTableExperiment: Found a twin Prime table capacity: 95791
+HashtableExperiment: Input: Random-Numbers	Loadfactor: 0.50
+
+	Using Linear Probing: 
+HashtableExperiment: size of hash table is 37700
+	Inserted 47896 elements, of which 10196 were duplicates
+	Avg. no. of probes = 1.00
+
+	 Using Double Hashing: 
+HashtableExperiment: size of hash table is 37700
+	Inserted 47896 elements, of which 10196 were duplicates
+	Avg. no. of probes = 1.00
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+HashTableExperiment: Found a twin Prime table capacity: 95791
+HashtableExperiment: Input: Random-Numbers	Loadfactor: 0.60
+
+	Using Linear Probing: 
+HashtableExperiment: size of hash table is 43162
+	Inserted 57475 elements, of which 14313 were duplicates
+	Avg. no. of probes = 1.00
+
+	 Using Double Hashing: 
+HashtableExperiment: size of hash table is 43162
+	Inserted 57475 elements, of which 14313 were duplicates
+	Avg. no. of probes = 1.00
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+HashTableExperiment: Found a twin Prime table capacity: 95791
+HashtableExperiment: Input: Random-Numbers	Loadfactor: 0.70
+
+	Using Linear Probing: 
+HashtableExperiment: size of hash table is 48311
+	Inserted 67054 elements, of which 18743 were duplicates
+	Avg. no. of probes = 1.00
+
+	 Using Double Hashing: 
+HashtableExperiment: size of hash table is 48311
+	Inserted 67054 elements, of which 18743 were duplicates
+	Avg. no. of probes = 1.00
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+HashTableExperiment: Found a twin Prime table capacity: 95791
+HashtableExperiment: Input: Random-Numbers	Loadfactor: 0.80
+
+	Using Linear Probing: 
+HashtableExperiment: size of hash table is 52816
+	Inserted 76633 elements, of which 23817 were duplicates
+	Avg. no. of probes = 1.00
+
+	 Using Double Hashing: 
+HashtableExperiment: size of hash table is 52816
+	Inserted 76633 elements, of which 23817 were duplicates
+	Avg. no. of probes = 1.00
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+HashTableExperiment: Found a twin Prime table capacity: 95791
+HashtableExperiment: Input: Random-Numbers	Loadfactor: 0.90
+
+	Using Linear Probing: 
+HashtableExperiment: size of hash table is 57052
+	Inserted 86212 elements, of which 29160 were duplicates
+	Avg. no. of probes = 1.00
+
+	 Using Double Hashing: 
+HashtableExperiment: size of hash table is 57052
+	Inserted 86212 elements, of which 29160 were duplicates
+	Avg. no. of probes = 1.00
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+HashTableExperiment: Found a twin Prime table capacity: 95791
+HashtableExperiment: Input: Random-Numbers	Loadfactor: 0.95
+
+	Using Linear Probing: 
+HashtableExperiment: size of hash table is 58748
+	Inserted 91002 elements, of which 32254 were duplicates
+	Avg. no. of probes = 1.00
+
+	 Using Double Hashing: 
+HashtableExperiment: size of hash table is 58748
+	Inserted 91002 elements, of which 32254 were duplicates
+	Avg. no. of probes = 1.00
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+HashTableExperiment: Found a twin Prime table capacity: 95791
+HashtableExperiment: Input: Random-Numbers	Loadfactor: 0.99
+
+	Using Linear Probing: 
+HashtableExperiment: size of hash table is 60383
+	Inserted 94834 elements, of which 34451 were duplicates
+	Avg. no. of probes = 1.00
+
+	 Using Double Hashing: 
+HashtableExperiment: size of hash table is 60383
+	Inserted 94834 elements, of which 34451 were duplicates
+	Avg. no. of probes = 1.00
+--------------------------------------------------------------------------------
+
